@@ -12,4 +12,7 @@
 
   # Compatibility value for Home Manager; change only after reading its release notes.
   home.stateVersion = "26.05";
+  imports = [
+    ./git.nix
+  ];
 }
