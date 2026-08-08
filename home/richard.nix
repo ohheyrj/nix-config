@@ -6,6 +6,8 @@
 
   home.packages = [
     pkgs.ripgrep
+    pkgs.age-plugin-yubikey
+    pkgs.sops
   ];
 
   programs.home-manager.enable = true;
@@ -17,4 +19,7 @@
     ./podman.nix
     ./mcp.nix
   ];
+
+  sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
+  sops.defaultSopsFile = ../secrets.yaml;
 }

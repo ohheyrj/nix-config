@@ -13,10 +13,17 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
+
+
   outputs =
-    { nix-darwin, home-manager, ... }:
+    { nix-darwin, home-manager, sops-nix, ... }:
     {
       darwinConfigurations.evilcorp = nix-darwin.lib.darwinSystem {
         modules = [
@@ -26,6 +33,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.richard = import ./home/richard.nix;
+            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
             home-manager.backupFileExtension = "nix-backup";
           }
         ];
