@@ -15,5 +15,6 @@
   imports = [
     ./git.nix
     ./podman.nix
+    ./mcp.nix
   ];
 }
