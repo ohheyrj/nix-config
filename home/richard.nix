@@ -18,6 +18,7 @@
     ./git.nix
     ./podman.nix
     ./mcp.nix
+    ./ai/claude-code.nix
   ];
 
   sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
