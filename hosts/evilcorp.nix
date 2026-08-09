@@ -10,7 +10,7 @@
   ];
 
   programs.zsh.enable = true;
-  security.pam.sudo_local = {
+  security.pam.services.sudo_local = {
     touchIdAuth = true;
   };
   users.users.richard.home = "/Users/richard";
