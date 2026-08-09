@@ -18,12 +18,27 @@
       url = "github:Mic92/sops-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    claude-plugins-official = {
+      url = "github:anthropics/claude-plugins-official";
+      flake = false;
+    };
+
+    agent-toolkit-for-aws = {
+      url = "github:aws/agent-toolkit-for-aws";
+      flake = false;
+    };
+
+    claude-code-warp = {
+      url = "github:warpdotdev/claude-code-warp";
+      flake = false;
+    };
   };
 
 
 
   outputs =
-    { nix-darwin, home-manager, sops-nix, ... }:
+    { nix-darwin, home-manager, sops-nix, ... }@inputs:
     {
       darwinConfigurations.evilcorp = nix-darwin.lib.darwinSystem {
         modules = [
@@ -35,6 +50,7 @@
             home-manager.users.richard = import ./home/richard.nix;
             home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
             home-manager.backupFileExtension = "nix-backup";
+            home-manager.extraSpecialArgs = { inherit inputs; };
           }
         ];
       };

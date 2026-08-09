@@ -1,5 +1,53 @@
 {
   "nodes": {
+    "agent-toolkit-for-aws": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786145693,
+        "narHash": "sha256-wl7++D9aSdZU+qhCJkyVPeb39xo0z6cxN0sBjZMf/ok=",
+        "owner": "aws",
+        "repo": "agent-toolkit-for-aws",
+        "rev": "171d4fba3bc404da3473f323c3e293b4a989f089",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aws",
+        "repo": "agent-toolkit-for-aws",
+        "type": "github"
+      }
+    },
+    "claude-code-warp": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1784163235,
+        "narHash": "sha256-ZMSQBLd9kCZfVqZX6VvMn6KnyM8a5zuTu+5ctltG5GQ=",
+        "owner": "warpdotdev",
+        "repo": "claude-code-warp",
+        "rev": "e0e18e162aa5ec97a6d4cecdf66b08b75eb1e149",
+        "type": "github"
+      },
+      "original": {
+        "owner": "warpdotdev",
+        "repo": "claude-code-warp",
+        "type": "github"
+      }
+    },
+    "claude-plugins-official": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786233886,
+        "narHash": "sha256-Wb4/SvdkjmfWQF2ntfngjRPdZMUa2fXqgQ/5QBWh0gA=",
+        "owner": "anthropics",
+        "repo": "claude-plugins-official",
+        "rev": "ef0067b219f80fa33dc9b6e2f290906d45f5e351",
+        "type": "github"
+      },
+      "original": {
+        "owner": "anthropics",
+        "repo": "claude-plugins-official",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -60,6 +108,9 @@
     },
     "root": {
       "inputs": {
+        "agent-toolkit-for-aws": "agent-toolkit-for-aws",
+        "claude-code-warp": "claude-code-warp",
+        "claude-plugins-official": "claude-plugins-official",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
