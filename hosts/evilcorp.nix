@@ -10,7 +10,9 @@
   ];
 
   programs.zsh.enable = true;
-
+  security.pam.sudo_local = {
+    touchIdAuth = true;
+  };
   users.users.richard.home = "/Users/richard";
 
   # Compatibility value for nix-darwin; change only after reading its changelog.
