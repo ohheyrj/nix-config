@@ -18,7 +18,7 @@
         command = "npx";
         args = [
           "-y"
-          "@upstream/context7-mcp"
+          "@upstash/context7-mcp"
         ];
         env.CONTEXT7_API_KEY = {
           file = config.sops.secrets.context7_api_key.path;
