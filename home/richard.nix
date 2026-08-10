@@ -34,6 +34,8 @@
     ./mcp.nix
     ./ai/claude-code.nix
     ./shell/fzf.nix
+    ./shell/zoxide.nix
+    ./shell/oh-my-posh.nix
     ./shell/mise.nix
   ];
 
