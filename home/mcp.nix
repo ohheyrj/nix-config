@@ -39,6 +39,15 @@
           file = config.sops.secrets.github_personal_access_token.path;
         };
       };
+      mcp-nixos = {
+        command = "podman";
+        args = [
+          "run"
+          "--rm"
+          "-i"
+          "ghcr.io/utensils/mcp-nixos"
+        ];
+      };
     };
   };
 }
