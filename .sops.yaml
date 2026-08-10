@@ -1,8 +1,12 @@
 ---
 keys:
   - &yubikey_primary age1yubikey1qflwx07j0c3jacfecwxc29qfcskse6gs3drj93tqthxax4gtfztvqa6746v
+  - &yubikey_backup1 age1yubikey1qf26w3ty850umj86fc9r7230xjppkqv7q4ax42nr4hxpupfsrkk025434uf
+  - &yubikey_backup2 age1yubikey1qv7emfgjp8dz5x5w54598tuplq62p7dkpyuxxj9x6x88rt5n0mawxmsj9vy
 creation_rules:
   - path_regex: secrets\.yaml$
     key_groups:
       - age:
           - *yubikey_primary
+          - *yubikey_backup1
+          - *yubikey_backup2
