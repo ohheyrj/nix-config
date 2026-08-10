@@ -1,19 +1,33 @@
 { pkgs, ... }:
 
 {
-  home.username = "richard";
-  home.homeDirectory = "/Users/richard";
+  home = {
+    username = "richard";
+    homeDirectory = "/Users/richard";
+    packages = [
+      pkgs.ripgrep
+      pkgs.age-plugin-yubikey
+      pkgs.sops
+    ];
 
-  home.packages = [
-    pkgs.ripgrep
-    pkgs.age-plugin-yubikey
-    pkgs.sops
-  ];
+    sessionVariables = {
+      EDITOR = "nvim";
+      NPM_CONFIG_PREFIX = "$HOME/.npm-global";
+      SOPS_AGE_KEY_FILE = "~/.config/sops/age/keys.txt";
+    };
+
+    sessionPath = [
+      "$HOME/.npm-global/bin"
+      "/Users/richard/.lmstudio/bin"
+      "/Users/richard/.bin"
+      "$HOME/.local/bin"
+    ];
+
+    stateVersion = "26.05";
+  };
 
   programs.home-manager.enable = true;
 
-  # Compatibility value for Home Manager; change only after reading its release notes.
-  home.stateVersion = "26.05";
   imports = [
     ./git.nix
     ./podman.nix

@@ -33,24 +33,54 @@
       url = "github:warpdotdev/claude-code-warp";
       flake = false;
     };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-
-
   outputs =
-    { nix-darwin, home-manager, sops-nix, ... }@inputs:
     {
+      nixpkgs,
+      nix-darwin,
+      home-manager,
+      sops-nix,
+      pre-commit-hooks,
+      ...
+    }@inputs:
+    let
+      system = "aarch64-darwin";
+      pkgs = nixpkgs.legacyPackages.${system};
+    in
+    {
+      devShells.${system}.default = pkgs.mkShell {
+        inherit
+          (pre-commit-hooks.lib.${system}.run {
+            src = ./.;
+            hooks = {
+              nixfmt.enable = true;
+              deadnix.enable = true;
+              statix.enable = true;
+            };
+          })
+          shellHook
+          ;
+      };
+
       darwinConfigurations.evilcorp = nix-darwin.lib.darwinSystem {
         modules = [
           ./hosts/evilcorp.nix
           home-manager.darwinModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.richard = import ./home/richard.nix;
-            home-manager.sharedModules = [ sops-nix.homeManagerModules.sops ];
-            home-manager.backupFileExtension = "nix-backup";
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.richard = import ./home/richard.nix;
+              sharedModules = [ sops-nix.homeManagerModules.sops ];
+              backupFileExtension = "nix-backup";
+              extraSpecialArgs = { inherit inputs; };
+            };
           }
         ];
       };
