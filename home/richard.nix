@@ -33,6 +33,7 @@
     ./podman.nix
     ./mcp.nix
     ./ai/claude-code.nix
+    ./zsh.nix
     ./shell/fzf.nix
     ./shell/zoxide.nix
     ./shell/oh-my-posh.nix
