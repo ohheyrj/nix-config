@@ -34,6 +34,7 @@
     ./mcp.nix
     ./ai/claude-code.nix
     ./shell/fzf.nix
+    ./shell/mise.nix
   ];
 
   sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
