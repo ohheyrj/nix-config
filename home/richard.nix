@@ -38,6 +38,7 @@
     ./shell/zoxide.nix
     ./shell/oh-my-posh.nix
     ./shell/mise.nix
+    ./ssh.nix
   ];
 
   sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
