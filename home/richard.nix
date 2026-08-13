@@ -8,6 +8,7 @@
       pkgs.ripgrep
       pkgs.age-plugin-yubikey
       pkgs.sops
+      pkgs.podman-compose
     ];
 
     sessionVariables = {
@@ -29,17 +30,11 @@
   programs.home-manager.enable = true;
 
   imports = [
+    ./ai
     ./git.nix
     ./podman.nix
-    ./mcp.nix
-    ./ai/claude-code.nix
-    ./zsh.nix
-    ./shell/fzf.nix
-    ./shell/zoxide.nix
-    ./shell/oh-my-posh.nix
-    ./shell/mise.nix
+    ./shell
     ./ssh.nix
-    ./shell/direnv.nix
   ];
 
   sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
