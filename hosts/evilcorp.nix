@@ -1,7 +1,11 @@
-_:
+{ pkgs, ... }:
 
 {
   nixpkgs.hostPlatform = "aarch64-darwin";
+
+  fonts.packages = [
+    pkgs.nerd-fonts.hurmit
+  ];
   nixpkgs.config.allowUnfree = true;
 
   nix.settings.experimental-features = [
