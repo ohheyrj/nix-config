@@ -36,10 +36,12 @@
 
   imports = [
     ./ai
+    ./gh.nix
     ./git.nix
     ./podman.nix
     ./shell
     ./ssh.nix
+    ./uv.nix
   ];
 
   sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
