@@ -34,10 +34,6 @@
       flake = false;
     };
 
-    pre-commit-hooks = {
-      url = "github:cachix/pre-commit-hooks.nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -46,7 +42,6 @@
       nix-darwin,
       home-manager,
       sops-nix,
-      pre-commit-hooks,
       ...
     }@inputs:
     let
@@ -55,17 +50,11 @@
     in
     {
       devShells.${system}.default = pkgs.mkShell {
-        inherit
-          (pre-commit-hooks.lib.${system}.run {
-            src = ./.;
-            hooks = {
-              nixfmt.enable = true;
-              deadnix.enable = true;
-              statix.enable = true;
-            };
-          })
-          shellHook
-          ;
+        packages = [
+          pkgs.deadnix
+          pkgs.nixfmt
+          pkgs.statix
+        ];
       };
 
       darwinConfigurations.evilcorp = nix-darwin.lib.darwinSystem {

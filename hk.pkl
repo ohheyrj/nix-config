@@ -1,0 +1,48 @@
+amends "package://github.com/jdx/hk/releases/download/v1.54.0/hk@1.54.0#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v1.54.0/hk@1.54.0#/Builtins.pkl"
+
+local checks = new Mapping<String, Step> {
+  ["nixfmt"] {
+    glob = "**/*.nix"
+    exclusive = true
+    prefix = "nix develop --command"
+    check = "nixfmt --check {{files}}"
+    fix = "nixfmt {{files}}"
+  }
+  ["deadnix"] {
+    glob = "**/*.nix"
+    exclusive = true
+    prefix = "nix develop --command"
+    check = "deadnix --fail {{files}}"
+  }
+  ["statix"] {
+    glob = "**/*.nix"
+    exclusive = true
+    prefix = "nix develop --command"
+    check = "statix check --format errfmt"
+  }
+  ["betterleaks"] = Builtins.betterleaks
+}
+
+hooks {
+  ["check"] {
+    steps = checks
+  }
+  ["fix"] {
+    fix = true
+    steps = checks
+  }
+  ["pre-commit"] {
+    fix = true
+    stash = "git"
+    steps = checks
+  }
+  ["commit-msg"] {
+    steps {
+      ["cocogitto"] = Builtins.cocogitto_commit_msg
+    }
+  }
+  ["pre-push"] {
+    steps = checks
+  }
+}

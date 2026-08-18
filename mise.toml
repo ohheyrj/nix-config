@@ -1,0 +1,21 @@
+[settings]
+experimental = true
+
+[tools]
+betterleaks = "latest"
+cocogitto = "latest"
+hk = "1.54.0"
+
+[env]
+HK_MISE = "1"
+
+[hooks]
+postinstall = "hk install --mise"
+
+[tasks.check]
+description = "Run all repository checks"
+run = "hk check --all"
+
+[tasks.fix]
+description = "Fix all repository files"
+run = "hk fix --all"
