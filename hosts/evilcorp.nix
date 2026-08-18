@@ -13,6 +13,8 @@
     "flakes"
   ];
 
+  environment.systemPath = [ "/etc/profiles/per-user/richard/bin" ];
+
   programs.zsh.enable = true;
   security.pam.services.sudo_local = {
     touchIdAuth = true;
