@@ -44,6 +44,6 @@
     ./uv.nix
   ];
 
-  sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/keys.txt";
+  sops.age.keyFile = "/Users/richard/Library/Application Support/sops/age/machine-key.txt";
   sops.defaultSopsFile = ../secrets.yaml;
 }
