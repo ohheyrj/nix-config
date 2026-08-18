@@ -7,6 +7,7 @@
     packages = [
       pkgs.ripgrep
       pkgs.age-plugin-yubikey
+      pkgs.opencommit
       pkgs.sops
       pkgs.podman-compose
     ];
@@ -15,6 +16,10 @@
       EDITOR = "nvim";
       NPM_CONFIG_PREFIX = "$HOME/.npm-global";
       SOPS_AGE_KEY_FILE = "~/.config/sops/age/keys.txt";
+      OCO_AI_PROVIDER = "ollama";
+      OCO_API_URL = "http://localhost:11434";
+      OCO_MODEL = "kimi-k2.7-code:cloud";
+      OCO_API_KEY = "ollama";
     };
 
     sessionPath = [
