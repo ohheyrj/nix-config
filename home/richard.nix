@@ -5,6 +5,7 @@
     username = "richard";
     homeDirectory = "/Users/richard";
     packages = [
+      pkgs.obsidian-mcp
       pkgs.ripgrep
       pkgs.age-plugin-yubikey
       pkgs.opencommit

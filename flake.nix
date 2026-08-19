@@ -33,7 +33,6 @@
       url = "github:warpdotdev/claude-code-warp";
       flake = false;
     };
-
   };
 
   outputs =
@@ -46,9 +45,17 @@
     }@inputs:
     let
       system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
+      localOverlay = final: _prev: {
+        obsidian-mcp = final.callPackage ./packages/obsidian-mcp.nix { };
+      };
+      pkgs = import nixpkgs {
+        inherit system;
+        overlays = [ localOverlay ];
+      };
     in
     {
+      packages.${system}.obsidian-mcp = pkgs.obsidian-mcp;
+
       devShells.${system}.default = pkgs.mkShell {
         packages = [
           pkgs.deadnix
@@ -62,6 +69,8 @@
           ./hosts/evilcorp.nix
           home-manager.darwinModules.home-manager
           {
+            nixpkgs.overlays = [ localOverlay ];
+
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
