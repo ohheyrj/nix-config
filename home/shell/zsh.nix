@@ -69,6 +69,8 @@
         export VAULT_TOKEN=$(op read "op://Private/Vault Token/token")
         echo "Loading Authentik Token"
         export AUTHENTIK_TOKEN=$(op read "op://Private/Authentik Token/token")
+        echo "Loading n8n API Key"
+        export N8N_API_KEY=$(op read "op://Private/n8n API Key/credential")
       }
     '';
   };
