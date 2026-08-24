@@ -65,6 +65,12 @@
       n8n-kapa = {
         url = "https://n8n.mcp.kapa.ai";
       };
+      obsidian-second-brain = {
+        command = "/etc/profiles/per-user/richard/bin/obsidian-mcp";
+        args = [
+          "/Users/richard/Obsidian Vaults/second-brain"
+        ];
+      };
     };
   };
 }
