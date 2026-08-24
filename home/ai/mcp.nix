@@ -1,8 +1,11 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
-  sops.secrets.context7_api_key = { };
-  sops.secrets.github_personal_access_token = { };
+  sops.secrets = {
+    context7_api_key = { };
+    github_personal_access_token = { };
+    n8n_mcp_token = { };
+  };
   programs.mcp = {
     enable = true;
     servers = {
@@ -47,6 +50,20 @@
           "-i"
           "ghcr.io/utensils/mcp-nixos"
         ];
+      };
+      n8n = {
+        url = "https://n8n.int.ldn.casa/mcp-server/http";
+        headersHelper = toString (
+          pkgs.writeShellScript "n8n-mcp-headers" ''
+            token=$(cat ${config.sops.secrets.n8n_mcp_token.path}) || exit 1
+            exec ${pkgs.jq}/bin/jq -n \
+              --arg token "$token" \
+              '{ Authorization: ("Bearer " + $token) }'
+          ''
+        );
+      };
+      n8n-kapa = {
+        url = "https://n8n.mcp.kapa.ai";
       };
     };
   };
