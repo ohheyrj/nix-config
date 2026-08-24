@@ -40,6 +40,23 @@
           # Terraform registry reads
           "mcp__plugin_claude-code-home-manager_terraform__get_*"
           "mcp__plugin_claude-code-home-manager_terraform__search_*"
+          # n8n read-only inspection, documentation, and validation
+          # (write tools execute_workflow / publish_workflow / unpublish_workflow are intentionally excluded)
+          "mcp__plugin_claude-code-home-manager_n8n__search_*"
+          "mcp__plugin_claude-code-home-manager_n8n__get_*"
+          "mcp__plugin_claude-code-home-manager_n8n__list_*"
+          "mcp__plugin_claude-code-home-manager_n8n__validate_*"
+          "mcp__plugin_claude-code-home-manager_n8n__explore_*"
+          "mcp__plugin_claude-code-home-manager_n8n__discover_*"
+          # Obsidian vault reads (lstpsche/obsidian-mcp)
+          # frontmatter and periodic excluded — they have write actions (set/remove, create)
+          "mcp__obsidian__vault_*"
+          "mcp__obsidian__note_read"
+          "mcp__obsidian__note_read_many"
+          "mcp__obsidian__note_inspect"
+          "mcp__obsidian__search_*"
+          "mcp__obsidian__wikilinks"
+          "mcp__obsidian__open_in_obsidian"
           # Git inspection
           "Bash(git log*)"
           "Bash(git diff*)"
