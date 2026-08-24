@@ -11,6 +11,7 @@
       pkgs.opencommit
       pkgs.sops
       pkgs.podman-compose
+      pkgs.rtk
     ];
 
     sessionVariables = {
